@@ -4,9 +4,17 @@ import { adminDb } from "@/firebaseAdmin";
 import { auth } from "@clerk/nextjs/server";
 import React from "react";
 
-async function ChatToFilePage({ params: { id } }: { params: { id: string } }) {
+interface ChatProps {
+  params: Promise<{
+    id: string;
+  }>;
+}
+
+// @ts-error
+async function ChatToFilePage({ params }: ChatProps) {
   auth.protect();
   const { userId } = await auth();
+  const { id } = await params;
   console.log(id);
   const ref = await adminDb
     .collection("users")

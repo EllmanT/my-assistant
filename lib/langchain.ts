@@ -147,8 +147,9 @@ export async function generateEmbeddingsInPineconeVectorStore(docId: string) {
 }
 
 const generateLangchainCompletion = async (docId: string, question: string) => {
-  let pineconeVectorStore;
-  pineconeVectorStore = await generateEmbeddingsInPineconeVectorStore(docId);
+  const pineconeVectorStore = await generateEmbeddingsInPineconeVectorStore(
+    docId
+  );
 
   if (!pineconeVectorStore) {
     throw new Error("Pinecone vector store not found");

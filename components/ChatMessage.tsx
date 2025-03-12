@@ -9,6 +9,7 @@ import Markdown from "react-markdown";
 function ChatMessage({ message }: { message: Message }) {
   const isHuman = message.role === "human";
   const { user } = useUser();
+  console.log("message", message);
   return (
     <div className={`chat ${isHuman ? "chat-end" : "chat-start"}`}>
       <div className="avatar chat-image">
@@ -31,7 +32,9 @@ function ChatMessage({ message }: { message: Message }) {
         </div>
       </div>
       <div
-        className={`chat-bubble prose ${isHuman && "bg-indigo-600 text-white"}`}
+        className={`chat-bubble prose ${
+          isHuman ? "bg-indigo-600 text-white" : "bg-gray-100 text-black"
+        }`}
       >
         {message.message === "Thinking..." ? (
           <div className="flex items-center justify-center">

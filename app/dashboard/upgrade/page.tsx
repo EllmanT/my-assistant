@@ -1,12 +1,7 @@
 "use client";
-import { createCheckoutSession } from "@/action/createCheckoutSession";
-import { createStripePortal } from "@/action/createStripePortal";
 import { Button } from "@/components/ui/button";
 import useSubsription from "@/hooks/useSubscription";
-import getStripe from "@/lib/stripe.js";
-import { useUser } from "@clerk/nextjs";
 import { CheckIcon } from "lucide-react";
-import { redirect, useRouter } from "next/navigation";
 import { useTransition } from "react";
 
 export type UserDetails = {
@@ -14,35 +9,36 @@ export type UserDetails = {
   name: string;
 };
 function PricingPage() {
-  const { user } = useUser();
-  const router = useRouter();
+  // const { user } = useUser();
+  // const router = useRouter();
 
   const { hasActiveMembership, loading } = useSubsription();
 
   const [isPending, startTransition] = useTransition();
+  console.log(startTransition);
 
-  const handleUpgrade = () => {
-    if (!user) return;
-    const userDetails: UserDetails = {
-      email: user.primaryEmailAddress?.toString(),
-      name: user.fullName,
-    };
+  // const handleUpgrade = () => {
+  //   if (!user) return;
+  //   const userDetails: UserDetails = {
+  //     email: user.primaryEmailAddress?.toString(),
+  //     name: user.fullName,
+  //   };
 
-    startTransition(async () => {
-      // Load stripe
-      const stripe = await getStripe();
-      if (!hasActiveMembership) {
-        // create stripe portal...
-        const stripePortalUrl = await createStripePortal();
+  //   startTransition(async () => {
+  //     // Load stripe
+  //     const stripe = await getStripe();
+  //     if (!hasActiveMembership) {
+  //       // create stripe portal...
+  //       const stripePortalUrl = await createStripePortal();
 
-        return router.push(stripePortalUrl);
-      }
-      const sessionId = await createCheckoutSession(userDetails);
-      await stripe?.redirectToCheckout({
-        sessionId,
-      });
-    });
-  };
+  //       return router.push(stripePortalUrl);
+  //     }
+  //     const sessionId = await createCheckoutSession(userDetails);
+  //     await stripe?.redirectToCheckout({
+  //       sessionId,
+  //     });
+  //   });
+  // };
   return (
     <div className="overflow-y-auto">
       <div className="py-24 sm:py-32">
@@ -112,7 +108,7 @@ function PricingPage() {
                 : hasActiveMembership
                 ? "Manage Plan"
                 : "Upgrade to Pro"}
-              onClick={handleUpgrade}
+              onClick={}
             </Button>
             <ul
               role="list"

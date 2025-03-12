@@ -7,7 +7,7 @@ import Stripe from "stripe";
 export async function POST(req: NextRequest) {
   const headersList = headers();
   const body = await req.text();
-  const signature = headersList.get("stripe-signature");
+  const signature = (await headersList).get("stripe-signature");
   if (!signature) {
     return new Response("No signature", { status: 400 });
   }
@@ -42,7 +42,7 @@ export async function POST(req: NextRequest) {
       return userDoc.docs[0];
     }
   };
-  switch (event) {
+  switch (event.type) {
     case "checkout.session.completed":
     case "payment_intent.succeeded": {
       const invoice = event.data.object;
@@ -60,8 +60,8 @@ export async function POST(req: NextRequest) {
       });
       break;
     }
-    case "customer.subsription.deleted":
-    case "subsription_schedule.cancelled": {
+    case "customer.subscription.deleted":
+    case "subscription_schedule.canceled": {
       const subsription = event.data.object as Stripe.Subscription;
       const customerId = subsription.customer as string;
 
@@ -80,5 +80,5 @@ export async function POST(req: NextRequest) {
       console.log(`unhandled event type :${event.type}`);
   }
 
-  return NextRequest.json({ message: "Webhook recieved" });
+  return NextResponse.json({ message: "Webhook recieved" });
 }

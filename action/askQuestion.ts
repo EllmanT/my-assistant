@@ -57,44 +57,6 @@ export async function askQuestion(id: string, question: string) {
   await chatRef.add(userMessage);
 
   const reply = await generateLangchainCompletion(id, question);
-  // Extract lineItems from the reply
-  //  Extract JSON data from AI reply
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let extractedData: any = {};
-  const jsonMatch = reply.match(/{[\s\S]*}/); // Match full JSON object
-
-  if (jsonMatch) {
-    try {
-      let jsonText = jsonMatch[0];
-
-      // Ensure proper JSON formatting
-      jsonText = jsonText
-        .replace(/([{,])\s*(\w+)\s*:/g, '$1 "$2":') // Ensure keys are wrapped in quotes
-        .replace(/,\s*}/g, "}"); // Remove trailing commas
-
-      extractedData = JSON.parse(jsonText); // Parse full object
-    } catch (error) {
-      console.error("Error parsing extracted JSON:", error);
-    }
-  } else {
-    console.error("No valid JSON object found in AI reply.");
-  }
-
-  // Ensure the response includes all expected fields
-  const fullObject = {
-    buyerTin: extractedData.buyerTin || "",
-    buyerVat: extractedData.buyerVat || "",
-    customerTIN: extractedData.customerTIN || "",
-    customerVAT: extractedData.customerVAT || "",
-    foundBanks: extractedData.foundBanks || [],
-    invoiceCurrency: extractedData.invoiceCurrency || "",
-    invoiceNumber: extractedData.invoiceNumber || "",
-    invoiceTotalAmount: extractedData.invoiceTotalAmount || 0,
-    invoiceVatAmount: extractedData.invoiceVatAmount || 0,
-    supplierTin: extractedData.supplierTin || "",
-    supplierVat: extractedData.supplierVat || "",
-    lineItems: extractedData.lineItems || [],
-  };
 
   const aiMessage: Message = {
     role: "ai",
@@ -102,5 +64,5 @@ export async function askQuestion(id: string, question: string) {
     createdAt: new Date(),
   };
   await chatRef.add(aiMessage);
-  return { success: true, message: reply, fullObject };
+  return { success: true, message: reply };
 }

@@ -67,10 +67,7 @@ function Chat({ id }: { id: string }) {
           { role: "ai", message: "Thinking...", createdAt: new Date() },
         ]);
 
-        const { success, message, fullObject } = await askQuestion(
-          id,
-          summaryPrompt
-        );
+        const { success, message } = await askQuestion(id, summaryPrompt);
         if (!success) {
           toast({
             variant: "destructive",
@@ -87,15 +84,13 @@ function Chat({ id }: { id: string }) {
             ])
           );
         }
-
-        console.log(fullObject);
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [snapshot]);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-
     const question = input;
     setInput("");
 
