@@ -8,9 +8,9 @@ import {
 } from "firebase-admin/app";
 import { getFirestore } from "firebase-admin/firestore";
 
-import serviceKey from "@/service_key.json";
 import { getStorage } from "firebase-admin/storage";
 
+const serviceKey = JSON.parse(process.env.FIREBASE_SERVICE_KEY as string);
 let app: App;
 
 if (getApps().length === 0) {
