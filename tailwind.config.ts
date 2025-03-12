@@ -1,6 +1,6 @@
 import type { Config } from "tailwindcss";
 import daisyui from "daisyui";
-import tailwindcssanimate from "tailwindcss-animate"
+import tailwindcssanimate from "tailwindcss-animate";
 
 export default {
   darkMode: ["class"],
@@ -11,6 +11,21 @@ export default {
   ],
   theme: {
     extend: {
+      animation: {
+        letterPop: "letterPop 1s ease-in-out forwards", // Animation for the letter popping in
+      },
+      keyframes: {
+        letterPop: {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(-15px)", // Letters start from a slightly higher position
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)", // Letters come to the normal position
+          },
+        },
+      },
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
