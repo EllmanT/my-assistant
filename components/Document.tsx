@@ -43,6 +43,7 @@ function Document({
           variant="outline"
           // For testing pupropses we enable it
           // disabled={isDeleting || !hasActiveMembership}
+          disabled={isDeleting}
           onClick={() => {
             const prompt = window.confirm(
               "Are you sure you want to delete the document?"
