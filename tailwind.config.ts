@@ -12,7 +12,7 @@ export default {
   theme: {
     extend: {
       animation: {
-        letterPop: "letterPop 1s ease-in-out forwards", // Animation for the letter popping in
+        letterPop: "letterPop 0.5s ease-in-out forwards", // Animation for the letter popping in
       },
       keyframes: {
         letterPop: {
