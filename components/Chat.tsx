@@ -11,6 +11,7 @@ import { useCollection } from "react-firebase-hooks/firestore";
 import { askQuestion } from "@/action/askQuestion";
 import ChatMessage from "./ChatMessage";
 import { useToast } from "@/hooks/use-toast";
+import { summaryPrompt } from "@/constants/constants";
 
 export type Message = {
   id?: string;
@@ -26,7 +27,7 @@ function Chat({ id }: { id: string }) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isPending, startTransition] = useTransition();
   const bottomOfChatRef = useRef<HTMLDivElement>(null);
-  const [hasRequestedSummary, setHasRequestedSummary] = useState(false); // New state
+  // const [hasRequestedSummary, setHasRequestedSummary] = useState(false); // New state
   const [snapshot, loading] = useCollection(
     user &&
       query(
@@ -55,38 +56,37 @@ function Chat({ id }: { id: string }) {
     });
     setMessages(newMessages);
 
-    // If chat is empty and summary hasn't been requested, request it
-    if (!hasRequestedSummary && newMessages.length === 0) {
-      setHasRequestedSummary(true);
-      startTransition(async () => {
-        const summaryPrompt = "Give me a summary of the document";
+    // // If chat is empty and summary hasn't been requested, request it
+    // if (!hasRequestedSummary && newMessages.length === 0) {
+    //   setHasRequestedSummary(true);
+    //   startTransition(async () => {
+    //     const summaryPrompt = "Hi, there Temba!";
 
-        setMessages((prev) => [
-          ...prev,
-          { role: "human", message: summaryPrompt, createdAt: new Date() },
-          { role: "ai", message: "Thinking...", createdAt: new Date() },
-        ]);
+    //     setMessages((prev) => [
+    //       ...prev,
+    //       { role: "human", message: summaryPrompt, createdAt: new Date() },
+    //       { role: "ai", message: summaryPrompt, createdAt: new Date() },
+    //     ]);
 
-        const { success, message } = await askQuestion(id, summaryPrompt);
-        if (!success) {
-          toast({
-            variant: "destructive",
-            title: "Error",
-            description: message,
-          });
-          setMessages((prev) =>
-            prev.slice(0, prev.length - 1).concat([
-              {
-                role: "ai",
-                message: `Ooops... ${message}`,
-                createdAt: new Date(),
-              },
-            ])
-          );
-        }
-      });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    //     const { success, message } = await askQuestion(id, summaryPrompt);
+    //     if (!success) {
+    //       toast({
+    //         variant: "destructive",
+    //         title: "Error",
+    //         description: message,
+    //       });
+    //       setMessages((prev) =>
+    //         prev.slice(0, prev.length - 1).concat([
+    //           {
+    //             role: "ai",
+    //             message: `Ooops... ${message}`,
+    //             createdAt: new Date(),
+    //           },
+    //         ])
+    //       );
+    //     }
+    //   });
+    // }
   }, [snapshot]);
 
   const handleSubmit = (e: FormEvent) => {
@@ -144,10 +144,10 @@ function Chat({ id }: { id: string }) {
               <ChatMessage
                 key="placeholder"
                 message={{
-                  // role: "ai",
-                  // message: "Ask me anything about  the documentdd!",
-                  role: "human",
-                  message: "Give me a summary of the document",
+                  role: "ai",
+                  message: summaryPrompt,
+                  // role: "human",
+                  // message: "Give me a summary of the document",
                   createdAt: new Date(),
                 }}
               />
