@@ -1,5 +1,8 @@
 import Documents from "@/components/Documents";
+import { buildFirebaseJson } from "@/lib/firebaseJsonBuilder";
 
+const credentials = buildFirebaseJson();
+console.log("Generated Firebase Credentials:", credentials);
 function Dashboard() {
   return (
     <div className=" mx-auto size-full max-w-7xl overflow-y-auto">
