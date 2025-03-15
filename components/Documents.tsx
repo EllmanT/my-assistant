@@ -18,7 +18,7 @@ async function Documents() {
     .collection("files")
     .get();
   return (
-    <div className=" mx-auto flex max-w-7xl flex-wrap justify-center gap-5 rounded-sm bg-gray-100 p-5 lg:justify-start">
+    <div className=" mx-auto flex max-w-7xl flex-wrap justify-center gap-2 rounded-sm bg-gray-50 p-5 lg:justify-start">
       {documentsSnapshot.docs.map((doc) => {
         const { name, downloadUrl, size } = doc.data();
 

@@ -8,12 +8,12 @@ import UpgradeButton from "./UpgradeButton";
 function Header() {
   return (
     <div className="flex justify-between bg-white shadow-sm p-5 border-b">
-      <Link href="/dashboard" className="text-2xl">
-        Chat to <span className="text-indigo-600">PDF</span>
+      <Link href="/dashboard" className="text-2xl font-bold">
+        Temba <span className="text-indigo-600">X</span>
       </Link>
       <SignedIn />
       <div className="flex items-cener space-x-2 ">
-        <Button asChild variant="secondary" className="hidden md:flex">
+        <Button asChild variant="outline" className="hidden md:flex ">
           <Link href="/dashboard/upgrade">Pricing</Link>
         </Button>
         <Button asChild variant="outline" className="hidden md:flex">

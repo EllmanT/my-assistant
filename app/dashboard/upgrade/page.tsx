@@ -43,11 +43,11 @@ function PricingPage() {
     <div className="overflow-y-auto">
       <div className="py-24 sm:py-32">
         <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-base font-semibold leading-7 text-indigo-600">
-            Pricing
+          <h2 className="text-base font-bold leading-7 text-indigo-600">
+            pricing
           </h2>
           <p className=" mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-            Supercharge your Document Companion
+            Unlock Temba’s Full Potential!
           </p>
         </div>
         <p className="mx-auto mt-6 max-w-2xl px-10 text-center text-lg leading-8 text-gray-600">
@@ -102,13 +102,13 @@ function PricingPage() {
             <Button
               className="focus-cisible:outline-2 mt-6 block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               disabled={loading || isPending}
+              // onClick={}
             >
               {isPending || loading
                 ? "Loading.."
                 : hasActiveMembership
                 ? "Manage Plan"
                 : "Upgrade to Pro"}
-              onClick={}
             </Button>
             <ul
               role="list"
