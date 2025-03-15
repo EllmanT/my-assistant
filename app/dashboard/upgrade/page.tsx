@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import useSubsription from "@/hooks/useSubscription";
 import { CheckIcon } from "lucide-react";
-import { useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 
 export type UserDetails = {
   email: string;
@@ -39,6 +39,17 @@ function PricingPage() {
   //     });
   //   });
   // };
+
+  const text = "Unlock Temba’s Full Potential!"; // Define your text here
+
+  // Explicitly define the type of letters as string[]
+  const [letters, setLetters] = useState<string[]>([]);
+
+  useEffect(() => {
+    // Split the text into an array of letters, including spaces
+    const splitText = text.split("");
+    setLetters(splitText);
+  }, []); // Only run once on component mount, since the text is static
   return (
     <div className="overflow-y-auto">
       <div className="py-24 sm:py-32">
@@ -47,7 +58,17 @@ function PricingPage() {
             pricing
           </h2>
           <p className=" mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-            Unlock Temba’s Full Potential!
+            {letters.map((letter, index) => (
+              <span
+                key={index}
+                className={`inline-block ${
+                  letter === " " ? "w-4" : ""
+                } animate-letterPop opacity-0`}
+                style={{ animationDelay: `${index * 0.05}s` }} // Delay each letter by 0.05s
+              >
+                {letter}
+              </span>
+            ))}
           </p>
         </div>
         <p className="mx-auto mt-6 max-w-2xl px-10 text-center text-lg leading-8 text-gray-600">
