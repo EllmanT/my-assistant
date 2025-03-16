@@ -60,7 +60,7 @@ function Chat({ id }: { id: string }) {
     // if (!hasRequestedSummary && newMessages.length === 0) {
     //   setHasRequestedSummary(true);
     //   startTransition(async () => {
-    //     const summaryPrompt = "Hi, there Maita!";
+    //     const summaryPrompt = "Hi, there !";
 
     //     setMessages((prev) => [
     //       ...prev,
