@@ -40,7 +40,7 @@ function PricingPage() {
   //   });
   // };
 
-  const text = "Unlock Temba’s Full Potential!"; // Define your text here
+  const text = "Unlock Maita’s Full Potential!"; // Define your text here
 
   // Explicitly define the type of letters as string[]
   const [letters, setLetters] = useState<string[]>([]);

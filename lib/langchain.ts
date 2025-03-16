@@ -188,7 +188,7 @@ const generateLangchainCompletion = async (docId: string, question: string) => {
   const historyAwareRetrieverPrompt = ChatPromptTemplate.fromMessages([
     [
       "system",
-      "Your name is Temba-X the assistant. You are a she.Ensure you highlight key details in your answers,by making text bold where necessary. Keep the responses engaging by adding relevant emojis where necessary based on the tone of the questions. Keep your responses engagingAnswer the user's questions based on the below context:\n\n{context}",
+      "Your name is Maita the assistant. You are a she.Ensure you highlight key details in your answers,by making text bold where necessary. Keep the responses engaging by adding relevant emojis where necessary based on the tone of the questions. Keep your responses engagingAnswer the user's questions based on the below context:\n\n{context}",
     ],
     ...chatHistory,
     ["user", "{input}"],

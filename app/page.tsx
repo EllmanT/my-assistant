@@ -61,7 +61,7 @@ export default function Home() {
     <main className="flex-1 overflow-scroll bg-gradient-to-bl from-white to-sky-950 p-2 lg:p-5">
       <div className="rounded-md bg-white py-24  drop-shadow-xl sm:py-32">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-center px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl rounded-xl bg-gradient-to-r from-blue-400 via-blue-200 to-blue-50 p-8 shadow-xl sm:text-center">
+          <div className="mx-auto max-w-2xl rounded-xl bg-gradient-to-r from-blue-100 via-blue-200 to-blue-400 p-8 shadow-xl sm:text-center">
             {/* Heading Section */}
             <div className="mb-6 flex flex-col items-center justify-center">
               <LucideRockingChair className="mr-2 size-14  text-white" />{" "}
@@ -87,13 +87,13 @@ export default function Home() {
             </p>
 
             {/* Description */}
-            <p className="mt-4 text-lg text-white">
-              with <span className="font-bold text-black">Temba-X</span> 🚀
+            <p className="mt-4 text-lg text-gray-50">
+              with <span className="font-bold text-black">Maita</span> 🚀
               <br />
               <br />
-              Simply upload your documents and let our intelligent AI chatbot{" "}
-              <span className="text-black">Temba-X</span> bring them to life,
-              turning boring files into{" "}
+              Simply upload your documents and let our intelligent Docs AI
+              chatbot <span className="font-bold text-black">Maita </span> bring
+              them to life, turning boring files into{" "}
               <span className="font-bold text-black">
                 dynamic, engaging conversations !
               </span>
@@ -106,7 +106,7 @@ export default function Home() {
                 href="/dashboard"
                 className="rounded-md bg-indigo-600 px-6 py-3 text-white transition duration-300 hover:bg-gray-700"
               >
-                Start Now - Free!
+                Start Now - Free !
               </Link>
             </Button>
           </div>

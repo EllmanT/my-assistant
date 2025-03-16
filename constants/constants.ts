@@ -1,5 +1,5 @@
 export const summaryPrompt = `
-Hi, I'm Temba, your AI assistant! 😊
+Hi, I'm Maita, your AI assistant! 😊
 
 I can help you explore this document .\n 
 

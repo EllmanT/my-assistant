@@ -9,7 +9,7 @@ function Header() {
   return (
     <div className="flex justify-between bg-white shadow-sm p-5 border-b">
       <Link href="/dashboard" className="text-2xl font-bold">
-        Temba <span className="text-indigo-600">X</span>
+        Maita <span className="text-blue-800">Docs</span>
       </Link>
       <SignedIn />
       <div className="flex items-cener space-x-2 ">
